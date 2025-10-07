@@ -1,0 +1,35 @@
+digraph {
+X_PLR [color = black]; X_History_of_malignant_tumors [color = black]; X_Family_history_of_lung_cancer [color = black]; L1 [color = black]; X_Family_history_of_tumors [color = black]; X_Smoking_cessation_time [color = black]; X_Smoking_status [color = black]; X_Smoking_level [color = black]; L2 [color = black]; X_Age [color = black]; X_NLR [color = black]; X_lung_cancer [color = black]; X_lung_nodule [color = black]; X_Chronic_lung_disease [color = black]; 
+subgraph Undirected {
+edge [dir=none, color=black]
+}
+
+subgraph Directed {
+edge [color=black]
+L1 -> X_Age
+L2 -> X_NLR
+L1 -> X_NLR
+L2 -> X_Chronic_lung_disease
+L2 -> X_Family_history_of_tumors
+L1 -> X_Chronic_lung_disease
+L2 -> X_Smoking_level
+L1 -> X_Family_history_of_tumors
+L2 -> X_Age
+L1 -> X_Smoking_level
+L2 -> X_History_of_malignant_tumors
+L1 -> X_History_of_malignant_tumors
+L2 -> X_Smoking_status
+L2 -> X_lung_nodule
+L2 -> X_lung_cancer
+L2 -> X_Smoking_cessation_time
+L1 -> X_Smoking_status
+L1 -> X_lung_nodule
+L1 -> X_lung_cancer
+L1 -> X_Smoking_cessation_time
+L2 -> X_PLR
+L1 -> X_PLR
+L2 -> X_Family_history_of_lung_cancer
+L1 -> X_Family_history_of_lung_cancer
+}
+
+}

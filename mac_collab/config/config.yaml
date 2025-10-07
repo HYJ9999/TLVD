@@ -1,0 +1,158 @@
+# config/default.yaml
+
+runner: "episode_runner"
+mac: "basic_mac"
+learner: "q_learner"
+t_max: 4                  # Restore default long-term training setup
+test_interval: 3   #50000
+test_nepisode: 32
+text_embed_dim: 1024 #1024
+n_agents: 3
+
+belief_dim: 128
+batch_size_run: 1
+state_shape: 1024  #1024
+
+# MAC
+agent_output_type: "q_values"
+action_selector: "multinomial"
+obs_last_action: false
+obs_agent_id: true
+use_causal_mask: false
+max_seq_length: 1024 #1024  # same with max_question_length
+n_actions: 2 
+
+# LLM model config - unified use of meta-llama/Llama-3.3-70B-Instruct-Turbo
+llm_model_name: "gpt2"  # Only used for tokenizer
+together_api_key: "${TOGETHER_API_KEY}"
+coordinator_model: "moonshotai/Kimi-K2-Instruct-0905" #gpt-4o-mini" OpenAI/gpt-oss-20B
+executor_model: "moonshotai/Kimi-K2-Instruct-0905" # "OpenAI/gpt-oss-20B"
+# Use a valid embedding model
+commitment_embedding_model_name: "BAAI/bge-large-en-v1.5"
+
+# Environment Settings
+# env: "math_env" # Old env name
+env: "huggingface_dataset_env" # New env name
+env_args:
+    # self.dataset_path = kwargs.get("hf_dataset_path", "gsm8k")
+  graph_path: "./mac_collab/data/pain_alpha0.05_rtscale1_N-1.dot"
+  var_desc_path: "./mac_collab/data/pain_description.json"
+  latents_desc_path: "./mac_collab/data/hidden_var_descriptions.json"
+  hf_dataset_path: "gsm8k"
+  hf_dataset_config_name: "main" # For gsm8k, usually "main" or "default"
+  dataset_split: "train"
+  question_field_name: "question" # Field name in the dataset for the question
+  answer_field_name: "answer"     # Field name in the dataset for the ground truth answer
+  max_question_length: 1024 #1024       # Used by env for obs_space and runner for scheme
+  max_answer_length: 20          # Used by env for action_space (if gym.spaces.Text)
+  # max_steps: 1 # This is now implicit in HuggingFaceDatasetEnv, episode_limit is 1
+  dataset_streaming: false      # Set to true for very large datasets to stream
+  use_random_sampling: false    # Disable random sampling; use sequential traversal for evaluation
+  use_dataset_episode: false     # Enable dataset-level episode; traverse entire dataset as one episode
+
+# Training Configuration
+train:
+  episodes_per_task: 100        # Episodes for each math problem (150 for MATH/140 for gsm-hard)
+  buffer_size: 32               # On-policy buffer size (16 for LLaMA 3.1 405B)
+  batch_size: 16               # Mini-batch size
+  update_interval: 10          # Update gradients every 10 steps (user-specified hyperparameter)
+  optimizer: "adam"            # Optimization algorithm
+  learning_rate: 0.001         # Learning rate for executors (η)
+  coordinator_learning_rate: 0.0005  # Learning rate for coordinator (η_coord)
+  gamma: 0.99                  # Discount factor
+
+# Learning rate configuration
+lr: 0.001                      # Default learning rate
+belief_net_lr: 0.001          # Belief network learning rate
+encoder_lr: 0.001             # Encoder learning rate
+mixer_lr: 0.001               # Mixer learning rate
+weight_decay: 0.0             # Weight decay
+episode_length: 1             # Episode length (number of data samples)
+
+# BNE (Bayesian Nash Equilibrium) coordination parameters
+bne_max_iterations: 5          # Max iterations for BNE
+bne_convergence_threshold: 0.01 # BNE convergence threshold
+stage2_weight: 0.3             # Stage 2 weight in total loss
+bne_update_rate: 0.1           # Learning rate for BNE updates
+
+# Network Architecture
+arch:
+  # Core Dimensions
+  entity_dim: 256              # Dimension of entity embeddings (d)
+  # belief_dim: 128              # Dimension of belief state (d_b)
+
+  # Transformer Architecture
+  attention_heads: 4           # Number of attention heads (H)
+  transformer_blocks: 2        # Number of transformer layers
+  key_dim: 64                 # Dimension per attention head (d/H)
+  mlp_hidden_size: 256        # Hidden layer size in belief encoder
+  feedforward_size: 1024 #1024      # Dimension of FFN intermediate layer
+
+  # Regularization
+  dropout_rate: 0.1           # Dropout probability
+  layer_norm_epsilon: 0.00001  # Layer normalization parameter
+
+# Mixer-related configuration
+prompt_attention_heads: 2      # Prompt embedding attention heads
+commitment_embedding_dim: 1024 #1024  # Updated to match BAAI/bge-large-en-v1.5 dimension
+
+# Temperature and Sampling Control
+sampling:
+  temperature_min: 0.1         # Minimum temperature (T_min)
+  temperature_max: 2.0         # Maximum temperature (T_max)
+  p_min: 0.1                   # Minimum sampling parameter
+  p_max: 0.9                   # Maximum sampling parameter
+
+# Reward Configuration
+reward:
+  max_value: 1.0               # Maximum reward bound (R_max) for each component
+  initial_weights: [0.4, 0.4, 0.2]  # Initial [AL, TS, CC] weights (α1, α2, α3)
+  eta_alpha: 0.001             # Learning rate for dynamic alpha updates
+  dynamic_alpha_update: true   # Enable/disable dynamic alpha updates
+  r_expected_source: "q_value" # Source for r_i^expected in L_dr: "q_value", "target_q_value", or other custom
+  # Individual reward component weights for environment step calculation
+  al_weight: 0.3               # Action Likelihood reward weight
+  ts_weight: 0.5               # Task Specific reward weight
+  cc_weight: 0.2               # Collaborative Contribution reward weight
+  # For r_i^CC (Collaborative Contribution Reward) - simplified version
+  cc_reward_placeholder_value: 0.1 # A placeholder value if full CC logic isn't implemented
+
+# Loss Weights
+loss:
+  belief_weight: 0.1           # Weight for belief network loss (λ_b)
+  encoder_weight: 0.1          # Weight for encoder regularization (λ)
+  mixing_weight: 0.1           # Weight for mixing network consistency (λ_m)
+
+# Early Stopping
+early_stopping:
+  commitment_threshold: 0.01    # Commitment change threshold (ε_C)
+  loss_threshold: 0.0001       # Loss convergence threshold (ε_L)
+  reward_threshold: 0.7        # Average reward threshold
+  patience: 5                  # Patience epochs
+
+# System Settings
+system:
+  use_cuda: true
+  device_num: 0
+  seed: 42
+  debug: true                  # Enable debug mode to show detailed reasoning process
+
+# Logging Settings
+logging:
+  use_tensorboard: true
+  log_interval: 1              # Log every episode to see the reasoning process
+  save_model: true
+  save_model_interval: 10000
+  checkpoint_path: "./models"
+  log_path: "./logs"
+  experiment_name: "llm_marl_math"
+
+# LLM configuration block - unified use of meta-llama/Llama-3.3-70B-Instruct-Turbo
+llm:
+  together_api_key: "${TOGETHER_API_KEY}"
+  coordinator_model: "gpt-4o-mini" #gpt-4o-mini"
+  #llama-3-70b/Llama-3.3-70B-Instruct-Turbo
+  executor_model: "moonshotai/Kimi-K2-Instruct-0905" # "OpenAI/gpt-oss-20B"
+  max_tokens: 2048
+
+

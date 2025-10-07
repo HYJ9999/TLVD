@@ -1,0 +1,63 @@
+digraph {
+X_Smoking_cessation_time [color = blue]; X_Chronic_lung_disease [color = blue]; X_RBC_distribution_width_CV [color = blue]; X_lung_cancer [color = blue]; X_PLR [color = blue]; X_Family_history_of_tumors [color = blue]; X_Lactate_Dehydrogenase [color = blue]; X_Carcinoembryonic_antigen [color = blue]; X_Smoking_level [color = blue]; X_Albumin [color = blue]; X_Serum_CA153 [color = blue]; X_Monocyte_percentage [color = blue]; X_Serum_CA199 [color = blue]; X_Platelet_Count [color = blue]; X_Waist_to_hip_ratio [color = blue]; L1 [color = red]; X_lung_nodule [color = blue]; L2 [color = red]; X_Serum_CA125 [color = blue]; X_Age [color = blue]; X_Melanoma_Antigen_A1_Immunoglobulin_MAGE [color = blue]; X_Non_small_cell_lung_cancer_antigen [color = blue]; L3 [color = red]; X_History_of_malignant_tumors [color = blue]; X_NLR [color = blue]; 
+subgraph Undirected {
+edge [dir=none, color=black]
+}
+
+subgraph Directed {
+edge [color=black]
+X_NLR -> X_Monocyte_percentage
+L3 -> X_Non_small_cell_lung_cancer_antigen
+L3 -> X_Monocyte_percentage
+L1 -> X_Family_history_of_tumors
+X_Age -> X_Smoking_cessation_time
+L3 -> X_Serum_CA125
+L3 -> X_Albumin
+L3 -> X_Melanoma_Antigen_A1_Immunoglobulin_MAGE
+X_Smoking_level -> X_Serum_CA153
+X_lung_cancer -> X_RBC_distribution_width_CV
+L3 -> X_Lactate_Dehydrogenase
+L3 -> X_lung_nodule
+X_lung_cancer -> X_Platelet_Count
+L2 -> X_Platelet_Count
+L1 -> X_RBC_distribution_width_CV
+X_Smoking_level -> X_Carcinoembryonic_antigen
+L2 -> X_lung_nodule
+X_Smoking_level -> X_Waist_to_hip_ratio
+L2 -> X_Smoking_level
+X_Age -> X_History_of_malignant_tumors
+L2 -> X_lung_cancer
+X_lung_cancer -> X_Serum_CA199
+L2 -> X_Serum_CA199
+X_Monocyte_percentage -> X_PLR
+X_Smoking_level -> X_Chronic_lung_disease
+X_lung_cancer -> X_Age
+L2 -> X_NLR
+L2 -> X_Age
+L2 -> X_PLR
+X_Smoking_level -> X_Smoking_cessation_time
+L3 -> X_Platelet_Count
+X_Age -> X_Serum_CA153
+L2 -> X_Monocyte_percentage
+X_NLR -> X_Smoking_level
+L3 -> X_Smoking_level
+L2 -> X_Non_small_cell_lung_cancer_antigen
+L2 -> X_Serum_CA125
+L3 -> X_Serum_CA199
+X_Age -> X_Chronic_lung_disease
+L3 -> X_lung_cancer
+X_lung_cancer -> X_Albumin
+L2 -> X_Melanoma_Antigen_A1_Immunoglobulin_MAGE
+L2 -> X_Albumin
+X_Age -> X_Carcinoembryonic_antigen
+X_lung_cancer -> X_Lactate_Dehydrogenase
+X_Age -> X_Waist_to_hip_ratio
+X_lung_cancer -> X_Family_history_of_tumors
+L2 -> X_Lactate_Dehydrogenase
+L3 -> X_NLR
+L3 -> X_Age
+L3 -> X_PLR
+X_Smoking_level -> X_History_of_malignant_tumors
+}
+
+}

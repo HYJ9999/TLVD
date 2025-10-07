@@ -1,0 +1,14 @@
+{
+    "X_Age" : {"name":"Age", "description": "age"},
+    "X_NLR" : {"name":"NLR", "description": "neutrophil-to-lymphocyte ratio"},
+    "X_PLR" : {"name":"PLR", "description": "platelet-to-lymphocyte ratio"},
+    "X_Family_history_of_tumors" : {"name":"Family history of tumors", "description": "Family history of tumors"},
+    "X_Family_history_of_lung_cancer" : {"name":"Family history of lung cancer", "description": "Family history of lung cancer"},
+    "X_History_of_malignant_tumors" : {"name":"History of malignant tumors", "description": "History of malignant tumors"},
+    "X_Chronic_lung_disease" : {"name":"Chronic lung disease","description": "Chronic lung disease"},
+    "X_Smoking_status" :{"name":"smoking status", "description": "Whether the patient smokes"},
+    "X_Smoking_level": {"name":"Smoking level", "description":  "Patient's smoking level"},
+    "X_Smoking_cessation_time": {"name":"Smoking cessation time", "description":"Patient’s smoking cessation duration"},
+    "X_lung_cancer": {"name":"lung cancer", "description":"The patient has lung cancer."},
+    "X_lung_nodule": {"name":"lung nodule","description": "lung nodule"}
+}

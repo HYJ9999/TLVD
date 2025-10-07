@@ -1,0 +1,25 @@
+digraph {
+L1 [color = red]; X_AverageQus_Par3 [color = blue]; X_Error_Number [color = blue]; L2 [color = red]; X_Speed_Figure [color = blue]; X_Error_Letter [color = blue]; L3 [color = red]; X_Speed_Letter [color = blue]; L4 [color = red]; X_Error_Figure [color = blue]; X_Speed_Number [color = blue]; X_AverageQus_Par2 [color = blue]; X_AverageQus_Par1 [color = blue]; 
+subgraph Undirected {
+edge [dir=none, color=black]
+}
+
+subgraph Directed {
+edge [color=black]
+L4 -> L1
+X_Speed_Number -> X_Speed_Figure
+L3 -> X_Error_Letter
+L1 -> X_AverageQus_Par1
+L1 -> L3
+X_Speed_Letter -> X_Speed_Figure
+L3 -> X_Error_Figure
+L1 -> L2
+L4 -> X_Speed_Letter
+L3 -> X_Error_Number
+L4 -> X_Speed_Number
+X_Speed_Number -> L2
+L2 -> X_AverageQus_Par2
+L2 -> X_AverageQus_Par3
+}
+
+}

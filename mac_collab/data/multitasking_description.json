@@ -1,0 +1,15 @@
+{
+        "X_Error_Letter": {"name": "X_Error_Letter", "description": "Number of errors marking letters in the letter task"},
+        "X_Error_Figure": {"name": "X_Error_Figure", "description": "Number of errors in the figure task"},
+        "X_Error_Number": {"name": "X_Error_Number", "description": "Number of errors marking numbers in the number task"},
+        "X_Speed_Letter": {"name": "X_Speed_Letter", "description": "The number of correctly marked letters in the letter task"},
+        "X_Speed_Figure": {"name": "X_Speed_Figure", "description": "Number of correctly marked figures in the figure task"},
+        "X_Speed_Number": {"name": "X_Speed_Number", "description": "Number of correctly marked numbers in the number task"},
+        "X_AverageQus_Par1": {"name": "X_AverageQus_Par1", "description": "Number of correctly answered questions in the first part of the experiment"},
+        "X_AverageQus_Par2": {"name": "X_AverageQus_Par2", "description": "Number of correctly answered questions in the second part of the experiment"},
+        "X_AverageQus_Par3": {"name": "X_AverageQus_Par3", "description": "Number of correctly answered questions in the third part of the experiment"},
+        "X_Speed": {"name": "X_Speed", "description": "Task completion speed"},
+        "X_Error": {"name": "X_Error", "description": "Error rate in answering questions"},
+        "Cognitive Processing Speed": {"name": "Speed", "description": "the efficiency and speed at which an individual can perform mental tasks. It influences the number of errors made in tasks that require quick identification and marking of figures, letters, and numbers, as slower processing speed may lead to increased errors across these tasks"},
+        "Cognitive Ability": {"name": "Cognitive Ability", "description": "the mental capacity to reason, plan, solve problems, think abstractly, comprehend complex ideas, learn quickly, and learn from experience. It influences performance across various tasks, including answering questions correctly in different parts of an experiment"}
+    }

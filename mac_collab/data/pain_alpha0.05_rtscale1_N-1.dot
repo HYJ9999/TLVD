@@ -1,0 +1,35 @@
+digraph {
+L3 [color = red]; X_10 [color = blue]; X_2 [color = blue]; X_9 [color = blue]; X_4 [color = blue]; X_15 [color = blue]; X_5 [color = blue]; X_7 [color = blue]; X_8 [color = blue]; X_6 [color = blue]; X_13 [color = blue]; X_14 [color = blue]; X_3 [color = blue]; L4 [color = red]; X_0 [color = blue]; X_12 [color = blue]; L1 [color = red]; X_1 [color = blue]; X_11 [color = blue]; L2 [color = red]; 
+subgraph Undirected {
+edge [dir=none, color=black]
+}
+
+subgraph Directed {
+edge [color=black]
+L3 -> X_13
+L3 -> X_11
+L3 -> X_9
+L3 -> X_12
+X_3 -> X_6
+X_3 -> X_4
+L4 -> X_10
+L2 -> X_14
+L3 -> X_1
+L1 -> X_0
+L4 -> X_11
+L4 -> X_13
+L4 -> X_9
+L2 -> X_15
+L3 -> L1
+L3 -> X_8
+L3 -> L2
+X_3 -> X_5
+X_13 -> X_12
+L3 -> X_3
+L1 -> X_2
+X_3 -> X_7
+L3 -> X_10
+L4 -> X_8
+}
+
+}

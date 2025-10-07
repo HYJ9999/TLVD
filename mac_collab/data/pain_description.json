@@ -1,0 +1,18 @@
+{
+    "X_0" : {"name":"Gender", "description":"Surgical patient gender"},
+    "X_1" : {"name":"Ages", "description":"Surgical patient Age"},
+    "X_2" : {"name":"Total surgery duration", "description":"Total surgery duration"},
+    "X_3" : {"name": "Intraoperative sufentanil dosage", "description":"Intraoperative sufentanil dosage"},
+    "X_4" : {"name":"Intraoperative Dynastat dosage", "description":"Intraoperative Dynastat dosage"},
+    "X_5" : {"name":"Intraoperative ketorolac dosage", "description":"Intraoperative ketorolac dosage"},
+    "X_6" : {"name":"Intraoperative tramadol dosage", "description":"Intraoperative tramadol dosage"},
+    "X_7" : {"name":"Intraoperative dezocine dosage", "description":"Intraoperative dezocine dosage"},
+    "X_8": {"name":"24h VAS rest pain score", "description":"24-hour postoperative VAS resting pain score"},
+    "X_9": {"name":"24h VAS activity pain score", "description":"24-hour postoperative VAS pain score during movement"},
+    "X_10": {"name":"48h VAS rest pain score", "description":"48-hour postoperative VAS pain score at rest"},
+    "X_11": {"name":"48h VAS activity pain score", "description":"48-hour postoperative VAS pain score during movement"},
+    "X_12": {"name":"Dezocine used within 24h postoperative", "description":"Dezocine used within 24h postoperative"},
+    "X_13": {"name":"Dezocine used within 48h postoperative", "description":"Dezocine used within 48h postoperative"},
+    "X_14": {"name":"Postoperative PCIA analgesia", "description":"Postoperative PCIA analgesia"},
+    "X_15": {"name":"Postoperative use of nerve block", "description":"Whether the patient underwent an invasive procedure such as nerve block for analgesia during surgery"}
+}
